@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Knjizara Zazz</title>
+    <title>Informacije o knjizari Zazz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="glavnaStranica.php">Pocetna stranica</a>
+                        <a class="nav-link" aria-current="page" href="glavnaStranica.php">Pocetna stranica</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="knjige.php">Knjige</a>
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="pisci.php">Pisci</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="informacije.php">Informacije</a>
+                        <a class="nav-link active" href="informacije.php">Informacije</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
