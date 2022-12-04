@@ -60,17 +60,23 @@
             <div class="card-body p-4 ">
                 <div style="height: 20px"></div>
                 <h1 class="fw-bolder position-absolute start-50 translate-middle">
-                    Snabdevanje knjizare</h1>
+                    Dodaj pisca</h1>
                 <div style="height: 30px"></div>
-                <p class="lead fw-semibold position-absolute top-50 start-50 translate-middle "
-                    style="text-align: center">Dobro došli na sajt za
-                    knjižare Zazz. <br /> Ulaskom na stranicu 'Knjige' možete pristupiti svim dostupnim
-                    knjigama. Na stranici 'Pisci' se nalaze svi pisci čije knjige imamo u ponudi.</br> U delu 'Dodaj' se
-                    mogu dodati nove
-                    knjige i pisci. Stranica 'Informacije' sadrži potrebne informacije o zaposlenima i najprodavanijoj
-                    knjizi.</p>
-                <div style="height: 120px"></div>
-                <br /><br /><br /><br /><br /><br /><br /><br />
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Ime</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ime pisca">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Prezime</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prezime pisca">
+                    </div>
+                    <div style="height: 45px"></div>
+                    <div class="form-group position-absolute start-50 translate-middle">
+                        <button type="submit" name="unesiPisca">Dodaj pisca</button>
+                    </div>
+                </form>
+                <br /><br /><br />
                 <p class="lead mb-0 fw-normal position-absolute start-50 translate-middle" style="text-align: center">
                     Informacije:
                     nd20201015@student.fon.bg.ac.rs<br />Kontakt telefon:
@@ -87,3 +93,20 @@
 </body>
 
 </html>
+
+<?php
+
+//  dodavanje pisca u bazu
+if (isset($_POST['unesiPisca'])) {
+    echo ('xd');
+    if ($_POST['ime'] !== "" && $_POST['prezime'] !== "") {
+        $pisac = new Pisac($_POST['ime'], $_POST['prezime']);
+        //provera da li postoji u bazi
+        if (!$pisac->postojiLi($link))
+            $pisac->dodaj($link);
+        else
+            echo "Pisac vec postoji u bazi!";
+    }
+}
+
+?>

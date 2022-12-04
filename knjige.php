@@ -87,3 +87,14 @@
 </body>
 
 </html>
+
+<?php
+
+//brisanje knjige iz baze
+if (isset($_POST['brisanjeKnjige'])) {
+    $vrednost = $_POST['ponudaKnjiga'];
+    $id = Knjiga::vratiIDZaNaslovIPisca($link, $vrednost['naslov'], $vrednost['pisacID']);
+    Knjiga::obrisiPremaID($link, $id);
+}
+
+?>

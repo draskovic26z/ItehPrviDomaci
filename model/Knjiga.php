@@ -1,7 +1,5 @@
 <?php
 
-include_once('response.php');
-
 class Knjiga
 {
     public $knjigaID;
@@ -11,9 +9,8 @@ class Knjiga
     public $pisacID;
 
 
-    public function __construct($knjigaID, $naslov, $godinaIzdavanja, $cena, $pisacID)
+    public function __construct($naslov, $godinaIzdavanja, $cena, $pisacID)
     {
-        $this->knjigaID = $knjigaID;
         $this->naslov = $naslov;
         $this->godinaIzdavanja = $godinaIzdavanja;
         $this->cena = $cena;
@@ -21,16 +18,16 @@ class Knjiga
 
     }
 
-    public static function getAll($baza)
+    public static function vratiSve($baza)
     {
         $sql = "SELECT * from knjiga";
         $rezultat = mysqli_query($baza, $sql);
         return $rezultat;
     }
 
-    public function addNew($baza)
+    public function dodaj($baza)
     {
-        $sqlUpit = "INSERT INTO knjiga(naslov, godinaIzdavanja,cena, pisacID)
+        $sqlUpit = "INSERT INTO knjiga(naslov, godinaIzdavanja, cena, pisacID)
       VALUES('$this->naslov', '$this->godinaIzdavanja', '$this->cena', '$this->pisacID')";
         $rez = mysqli_query($baza, $sqlUpit);
         if ($rez)
@@ -40,9 +37,9 @@ class Knjiga
 
     }
 
-    public static function getById($baza, $knjigaID)
+    public static function vratiPremaID($baza, $knjigaID)
     {
-        $svi = self::getAll($baza);
+        $svi = self::vratiSve($baza);
         while ($knjiga = mysqli_fetch_array($svi)) {
             if ($knjiga['knjigaID'] == $knjigaID) {
                 return $knjiga;
@@ -50,7 +47,7 @@ class Knjiga
         }
     }
 
-    public function deleteById($baza, $knjigaID)
+    public static function obrisiPremaID($baza, $knjigaID)
     {
         $sqlUpit = "DELETE FROM knjiga WHERE knjigaID = $knjigaID";
         $rez = mysqli_query($baza, $sqlUpit);
@@ -58,6 +55,30 @@ class Knjiga
             echo "Uspecno obrisana knjiga" . '<br>';
         else
             echo "Greska pri brisanju knjige" . '<br>';
+    }
+
+    //da li knjiga postoji u bazi
+    function postojiLi($baza)
+    {
+        $rez = self::vratiSve($baza);
+        while ($knjiga = mysqli_fetch_array($rez)) {
+            if ($knjiga['naslov'] == $this->naslov && $knjiga['pisacID'] == $this->pisacID)
+                return true;
+        }
+
+        return false;
+    }
+
+    //vrati id knjige na osnovu pisca i naslova
+    static function vratiIDZaNaslovIPisca($baza, $naslov, $pisacID)
+    {
+        $rez = self::vratiSve($baza);
+        while ($knjiga = mysqli_fetch_array($rez)) {
+            if ($knjiga['naslov'] == $naslov && $knjiga['pisacID'] == $pisacID)
+                return $knjiga['knjigaID'];
+        }
+
+        return false;
     }
 }
 ?>

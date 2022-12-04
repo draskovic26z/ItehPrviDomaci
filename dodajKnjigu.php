@@ -1,3 +1,7 @@
+<?php include('dbBroker.php') ?>
+<?php include('model/Pisac.php') ?>
+<?php include('model/Knjiga.php') ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -60,30 +64,73 @@
             <div class="card-body p-4 ">
                 <div style="height: 20px"></div>
                 <h1 class="fw-bolder position-absolute start-50 translate-middle">
-                    Snabdevanje knjizare</h1>
+                    Dodaj knjigu</h1>
                 <div style="height: 30px"></div>
-                <p class="lead fw-semibold position-absolute top-50 start-50 translate-middle "
-                    style="text-align: center">Dobro došli na sajt za
-                    knjižare Zazz. <br /> Ulaskom na stranicu 'Knjige' možete pristupiti svim dostupnim
-                    knjigama. Na stranici 'Pisci' se nalaze svi pisci čije knjige imamo u ponudi.</br> U delu 'Dodaj' se
-                    mogu dodati nove
-                    knjige i pisci. Stranica 'Informacije' sadrži potrebne informacije o zaposlenima i najprodavanijoj
-                    knjizi.</p>
-                <div style="height: 120px"></div>
-                <br /><br /><br /><br /><br /><br /><br /><br />
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Naslov</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" name="naslov"
+                            placeholder="Naslov knjige">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Godina izdavanja</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" name="godinaIzdavanja"
+                            placeholder="Godina izdavanja knjige">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Cena</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cena knjige"
+                            name="cena">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Pisac</label>
+                        <select class="form-control" name="pisac">
+                            <?php
+                            $rez = Pisac::vratiSve($link);
+                            while ($pisac = mysqli_fetch_array($rez)) {
+                                $pisacID = $pisac['pisacID'];
+                                $imePrezime = $pisac['ime'] . ' ' . $pisac['prezime'];
+                            ?>
+                            <option value="<?php echo $pisacID ?>">
+                                <?php echo $imePrezime ?>
+                            </option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div style="height: 45px"></div>
+                    <div class="form-group position-absolute start-50 translate-middle">
+                        <button type="submit" name="unesiKnjigu">Dodaj knjigu</button>
+                    </div>
+                </form>
+                <br /><br /><br />
                 <p class="lead mb-0 fw-normal position-absolute start-50 translate-middle" style="text-align: center">
                     Informacije:
                     nd20201015@student.fon.bg.ac.rs<br />Kontakt telefon:
                     +381648239727</p>
                 <br /><br />
-
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 </body>
 
 </html>
+
+<?php
+
+//  dodavanje knjige u bazu
+if (isset($_POST['unesiKnjigu'])) {
+    if ($_POST['naslov'] !== "" && $_POST['godinaIzdavanja'] !== "" && $_POST['cena'] !== "" && $_POST['pisacID'] !== "") {
+        $knjiga = new Knjiga($_POST['naslov'], $_POST['godinaIzdavanja'], $_POST['cena'], $_POST['pisacID']);
+        if (!$knjiga->postojiLi($link))
+            $knjiga->dodaj($link);
+        else
+            echo "Knjiga vec postoji u bazi!";
+    }
+}
+
+?>
