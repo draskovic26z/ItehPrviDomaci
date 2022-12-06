@@ -13,7 +13,7 @@
 <body>
     <!-- Navbar content -->
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Knjizara Zazz</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -53,15 +53,22 @@
     <div style="height: 50px"></div>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid" style="width: 80%;">
 
         <div style="height: 50px"></div>
         <div class="card border border-1 rounded-5 shadow my-5" style="background-color: wheat">
+            <div class="card-header container-fluid">
+                <span class="fw-bold" style="display: flex; justify-content: center;"> Knjizara Zazz nastala je 2022.
+                    godine, kao projekat Nikole
+                    Draskovica za
+                    predmet
+                    ITEH.</span>
+            </div>
             <div class="card-body p-4 ">
-                <div style="height: 20px"></div>
+                <div style="height: 35px"></div>
                 <h1 class="fw-bolder position-absolute start-50 translate-middle">
                     Snabdevanje knjizare</h1>
-                <div style="height: 30px"></div>
+                <div style="height: 200px"></div>
                 <p class="lead fw-semibold position-absolute top-50 start-50 translate-middle "
                     style="text-align: center">Dobro došli na sajt za
                     knjižare Zazz. <br /> Ulaskom na stranicu 'Knjige' možete pristupiti svim dostupnim
@@ -69,14 +76,13 @@
                     mogu dodati nove
                     knjige i pisci. Stranica 'Informacije' sadrži potrebne informacije o zaposlenima i najprodavanijoj
                     knjizi.</p>
-                <div style="height: 120px"></div>
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <p class="lead mb-0 fw-normal position-absolute start-50 translate-middle" style="text-align: center">
-                    Informacije:
-                    nd20201015@student.fon.bg.ac.rs<br />Kontakt telefon:
-                    +381648239727</p>
-                <br /><br />
-
+                <div style="height:100px"></div>
+            </div>
+            <div class="card-footer">
+                <span class="fw-normal" style="display: flex; justify-content: center;">
+                    Email:
+                    nd20201015@student.fon.bg.ac.rs<span style="width: 250px;"></span>Kontakt telefon:
+                    +381648239727</span>
             </div>
         </div>
     </div>

@@ -57,10 +57,17 @@
 
         <div style="height: 50px"></div>
         <div class="card border border-1 rounded-5 shadow my-5" style="background-color: wheat">
+            <div class="card-header container-fluid">
+                <span class="fw-bold" style="display: flex; justify-content: center;"> Knjizara Zazz nastala je 2022.
+                    godine, kao projekat Nikole
+                    Draskovica za
+                    predmet
+                    ITEH.</span>
+            </div>
             <div class="card-body p-4 ">
                 <div style="height: 20px"></div>
-                <h1 class="fw-bolder position-absolute start-50 translate-middle">
-                    Informacije</h1>
+                <h1 class="fw-bold position-absolute start-50 translate-middle"> Informacije
+                </h1>
                 <div style="height:145px"></div>
                 <p class="lead fw-semibold position-absolute start-50 translate-middle " id="tekst"
                     style="text-align: center">
@@ -69,18 +76,19 @@
                 <div style="height: 120px"></div>
                 <div class="form-group position-absolute start-50 translate-middle">
                     <span>
-                        <button type="submit" id="opis">Opis</button>
-                        <button type="submit" id="zaposleni">Zaposleni</button>
-                        <button onclick="odbrojavanje()">Osvezi za 5 sekundi</button>
+                        <button class="btn btn-dark" type="submit" id="opis">Opis</button>
+                        <button class="btn btn-dark" type="submit" id="zaposleni">Zaposleni</button>
+                        <button class="btn btn-dark" onclick="odbrojavanje()">Osvezi za 5 sekundi</button>
                     </span>
                 </div>
                 <br /><br /><br />
-                <p class="lead mb-0 fw-normal position-absolute start-50 translate-middle" style="text-align: center">
-                    Informacije:
-                    nd20201015@student.fon.bg.ac.rs<br />Kontakt telefon:
-                    +381648239727</p>
-                <br /><br />
 
+            </div>
+            <div class="card-footer">
+                <span class="fw-normal" style="display: flex; justify-content: center;">
+                    Email:
+                    nd20201015@student.fon.bg.ac.rs<span style="width: 250px;"></span>Kontakt telefon:
+                    +381648239727</span>
             </div>
         </div>
     </div>
