@@ -1,3 +1,7 @@
+<?php include_once('dbBroker.php') ?>
+<?php include_once('model/Pisac.php') ?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -62,14 +66,16 @@
                 <h1 class="fw-bolder position-absolute start-50 translate-middle">
                     Dodaj pisca</h1>
                 <div style="height: 30px"></div>
-                <form>
+                <form method="post">
                     <div class="form-group">
                         <label for="formGroupExampleInput">Ime</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ime pisca">
+                        <input type="text" name="ime" class="form-control" id="formGroupExampleInput"
+                            placeholder="Ime pisca">
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput2">Prezime</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prezime pisca">
+                        <input type="text" name="prezime" class="form-control" id="formGroupExampleInput2"
+                            placeholder="Prezime pisca">
                     </div>
                     <div style="height: 45px"></div>
                     <div class="form-group position-absolute start-50 translate-middle">
@@ -98,14 +104,14 @@
 
 //  dodavanje pisca u bazu
 if (isset($_POST['unesiPisca'])) {
-    echo ('xd');
     if ($_POST['ime'] !== "" && $_POST['prezime'] !== "") {
         $pisac = new Pisac($_POST['ime'], $_POST['prezime']);
         //provera da li postoji u bazi
-        if (!$pisac->postojiLi($link))
+        if (!$pisac->postojiLi($link)) {
             $pisac->dodaj($link);
-        else
+        } else {
             echo "Pisac vec postoji u bazi!";
+        }
     }
 }
 

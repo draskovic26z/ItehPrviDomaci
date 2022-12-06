@@ -1,3 +1,7 @@
+<?php include_once('dbBroker.php') ?>
+<?php include_once('model/Knjiga.php') ?>
+
+
 <?php
 
 class Pisac
@@ -22,7 +26,7 @@ class Pisac
 
     public function dodaj($baza)
     {
-        $sqlUpit = "INSERT INTO pisac(ime, prezime)
+        $sqlUpit = "INSERT INTO pisac (ime, prezime)
       VALUES('$this->ime', '$this->prezime')";
         $rez = mysqli_query($baza, $sqlUpit);
         if ($rez)

@@ -1,6 +1,6 @@
-<?php include('dbBroker.php') ?>
-<?php include('model/Pisac.php') ?>
-<?php include('model/Knjiga.php') ?>
+<?php include_once('dbBroker.php') ?>
+<?php include_once('model/Pisac.php') ?>
+<?php include_once('model/Knjiga.php') ?>
 
 <!doctype html>
 <html lang="en">
@@ -66,7 +66,7 @@
                 <h1 class="fw-bolder position-absolute start-50 translate-middle">
                     Dodaj knjigu</h1>
                 <div style="height: 30px"></div>
-                <form>
+                <form method="post">
                     <div class="form-group">
                         <label for="formGroupExampleInput">Naslov</label>
                         <input type="text" class="form-control" id="formGroupExampleInput" name="naslov"
@@ -125,7 +125,7 @@
 //  dodavanje knjige u bazu
 if (isset($_POST['unesiKnjigu'])) {
     if ($_POST['naslov'] !== "" && $_POST['godinaIzdavanja'] !== "" && $_POST['cena'] !== "" && $_POST['pisacID'] !== "") {
-        $knjiga = new Knjiga($_POST['naslov'], $_POST['godinaIzdavanja'], $_POST['cena'], $_POST['pisacID']);
+        $knjiga = new Knjiga($_POST['naslov'], $_POST['godinaIzdavanja'], $_POST['cena'], $_POST['pisac']);
         if (!$knjiga->postojiLi($link))
             $knjiga->dodaj($link);
         else

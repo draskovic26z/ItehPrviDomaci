@@ -1,5 +1,7 @@
-<?php
+<?php include_once('dbBroker.php') ?>
+<?php include_once('model/Pisac.php') ?>
 
+<?php
 class Knjiga
 {
     public $knjigaID;
@@ -27,7 +29,7 @@ class Knjiga
 
     public function dodaj($baza)
     {
-        $sqlUpit = "INSERT INTO knjiga(naslov, godinaIzdavanja, cena, pisacID)
+        $sqlUpit = "INSERT INTO knjiga (naslov, godinaIzdavanja, cena, pisacID)
       VALUES('$this->naslov', '$this->godinaIzdavanja', '$this->cena', '$this->pisacID')";
         $rez = mysqli_query($baza, $sqlUpit);
         if ($rez)
