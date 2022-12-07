@@ -1,3 +1,6 @@
+<?php include_once('dbBroker.php') ?>
+<?php include_once('model/Pisac.php') ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -57,26 +60,43 @@
 
         <div style="height: 50px"></div>
         <div class="card border border-1 rounded-5 shadow my-5" style="background-color: wheat">
+            <div class="card-header container-fluid">
+                <span class="fw-bold" style="display: flex; justify-content: center;"> Knjizara Zazz nastala je 2022.
+                    godine, kao projekat Nikole
+                    Draskovica za
+                    predmet
+                    ITEH.</span>
+            </div>
             <div class="card-body p-4 ">
-                <div style="height: 20px"></div>
-                <h1 class="fw-bolder position-absolute start-50 translate-middle">
-                    Snabdevanje knjizare</h1>
-                <div style="height: 30px"></div>
-                <p class="lead fw-semibold position-absolute top-50 start-50 translate-middle "
-                    style="text-align: center">Dobro došli na sajt za
-                    knjižare Zazz. <br /> Ulaskom na stranicu 'Knjige' možete pristupiti svim dostupnim
-                    knjigama. Na stranici 'Pisci' se nalaze svi pisci čije knjige imamo u ponudi.</br> U delu 'Dodaj' se
-                    mogu dodati nove
-                    knjige i pisci. Stranica 'Informacije' sadrži potrebne informacije o zaposlenima i najprodavanijoj
-                    knjizi.</p>
-                <div style="height: 120px"></div>
-                <br /><br /><br /><br /><br /><br /><br /><br />
-                <p class="lead mb-0 fw-normal position-absolute start-50 translate-middle" style="text-align: center">
-                    Informacije:
-                    nd20201015@student.fon.bg.ac.rs<br />Kontakt telefon:
-                    +381648239727</p>
-                <br /><br />
-
+                <?php
+                $result = Pisac::vratiSve($link);
+                echo '<table class="table table-striped table-bordered border-dark table-hover">';
+                echo '<thead class="thead-dark"><tr><th>ID</th><th>Ime</th><th>Prezime</th><th>Obrisi</th></tr></thead>';
+                echo '<tbody>';
+                while ($pisac = mysqli_fetch_assoc($result)) {
+                    echo '<tr>';
+                    echo '<td >' . $pisac['pisacID'] . '</td>';
+                    echo '<td>' . $pisac['ime'] . '</td>';
+                    echo '<td>' . $pisac['prezime'] . '</td>';
+                    echo '<td>'
+                    ?>
+                <form method="post">
+                    <input type="hidden" name="id" value="<?php echo $pisac['pisacID'] ?>">
+                    <button type="submit" name="delete" value="DELETE" class="btn btn-danger">Obrisi</button>
+                </form>
+                <?php
+                    echo '</td';
+                    echo '</tr>';
+                }
+                echo '</tbody>';
+                echo '</table>';
+                ?>
+            </div>
+            <div class="card-footer">
+                <span class="fw-normal" style="display: flex; justify-content: center;">
+                    Email:
+                    nd20201015@student.fon.bg.ac.rs<span style="width: 250px;"></span>Kontakt telefon:
+                    +381648239727</span>
             </div>
         </div>
     </div>
@@ -87,3 +107,12 @@
 </body>
 
 </html>
+
+<?php
+
+if (isset($_POST['delete'])) {
+    $vrednost = $_POST['id'];
+    Pisac::obrisiPremaID($link, $vrednost);
+}
+
+?>

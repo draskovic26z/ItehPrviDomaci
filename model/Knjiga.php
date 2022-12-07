@@ -32,10 +32,10 @@ class Knjiga
         $sqlUpit = "INSERT INTO knjiga (naslov, godinaIzdavanja, cena, pisacID)
       VALUES('$this->naslov', '$this->godinaIzdavanja', '$this->cena', '$this->pisacID')";
         $rez = mysqli_query($baza, $sqlUpit);
-        if ($rez)
-            echo "Uspesno uneta knjiga" . '<br>';
-        else
-            echo "Greska pri unosu knjige" . '<br>';
+        // if ($rez)
+        //     echo "Uspesno uneta knjiga" . '<br>';
+        // else
+        //     echo "Greska pri unosu knjige" . '<br>';
 
     }
 
@@ -53,13 +53,12 @@ class Knjiga
     {
         $sqlUpit = "DELETE FROM knjiga WHERE knjigaID = $knjigaID";
         $rez = mysqli_query($baza, $sqlUpit);
-        if ($rez)
-            echo "Uspecno obrisana knjiga" . '<br>';
-        else
-            echo "Greska pri brisanju knjige" . '<br>';
+        // if ($rez)
+        //     echo "Uspesno obrisana knjiga" . '<br>';
+        // else
+        //     echo "Greska pri brisanju knjige" . '<br>';
     }
 
-    //da li knjiga postoji u bazi
     function postojiLi($baza)
     {
         $rez = self::vratiSve($baza);
@@ -71,7 +70,6 @@ class Knjiga
         return false;
     }
 
-    //vrati id knjige na osnovu pisca i naslova
     static function vratiIDZaNaslovIPisca($baza, $naslov, $pisacID)
     {
         $rez = self::vratiSve($baza);
@@ -81,6 +79,13 @@ class Knjiga
         }
 
         return false;
+    }
+
+    public static function vratiSveIPisca($baza)
+    {
+        $sql = "SELECT * from knjiga k INNER JOIN pisac p on k.pisacID=p.pisacID";
+        $rezultat = mysqli_query($baza, $sql);
+        return $rezultat;
     }
 }
 ?>

@@ -29,10 +29,10 @@ class Pisac
         $sqlUpit = "INSERT INTO pisac (ime, prezime)
       VALUES('$this->ime', '$this->prezime')";
         $rez = mysqli_query($baza, $sqlUpit);
-        if ($rez)
-            echo "Uspesno unet pisac" . '<br>';
-        else
-            echo "Greska pri unosu pisca" . '<br>';
+        // if ($rez)
+        //     echo "Uspesno unet pisac" . '<br>';
+        // else
+        //     echo "Greska pri unosu pisca" . '<br>';
 
     }
 
@@ -50,13 +50,12 @@ class Pisac
     {
         $sqlUpit = "DELETE FROM pisac WHERE pisacID = $pisacID";
         $rez = mysqli_query($baza, $sqlUpit);
-        if ($rez)
-            echo "Uspesno obrisan pisac" . '<br>';
-        else
-            echo "Greska pri brisanju pisca" . '<br>';
+        // if ($rez)
+        //     echo "Uspesno obrisan pisac" . '<br>';
+        // else
+        //     echo "Greska pri brisanju pisca" . '<br>';
     }
 
-    //da li pisac postoji u bazi
     function postojiLi($baza)
     {
         $rez = self::vratiSve($baza);
