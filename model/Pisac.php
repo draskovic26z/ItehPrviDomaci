@@ -46,7 +46,7 @@ class Pisac
         }
     }
 
-    public function obrisiPremaID($baza, $pisacID)
+    public static function obrisiPremaID($baza, $pisacID)
     {
         $sqlUpit = "DELETE FROM pisac WHERE pisacID = $pisacID";
         $rez = mysqli_query($baza, $sqlUpit);
